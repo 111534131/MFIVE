@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MFIVE 賞車網 - 找車、比價、看規格</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">MFIVE 賞車網</a>
+            <nav id="nav-links">
+                <a href="index.html">首頁</a>
+                <a href="compare.html">車輛比較</a>
+                <a href="favorites.html" id="favorites-link" style="display: none;">我的最愛</a>
+                <a href="admin.html" id="admin-link" style="display: none;">管理後台</a>
+            </nav>
+            <div class="nav-auth">
+                <!-- Auth content will be loaded by app.js -->
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>尋找您的夢想車款</h1>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="輸入品牌或車型 (例如: Toyota, BMW)...">
+                <button
+                    onclick="window.location.href='index.html?q=' + document.getElementById('search-input').value">搜尋</button>
+            </div>
+        </section>
+
+        <!-- 品牌分類導航區域 -->
+        <section class="category-section">
+            <h2 class="section-title">熱門品牌</h2>
+            <div class="category-tabs brand-tabs">
+                <div class="category-tab brand-tab active" data-brand="all" onmouseenter="showBrandVehicles('all')">
+                    <span class="brand-text">推薦</span>
+                </div>
+                <div class="category-tab brand-tab" data-brand="Toyota" onmouseenter="showBrandVehicles('Toyota')">
+                    <img src="images/logos/toyota.png" alt="Toyota" class="brand-logo">
+                    <span class="brand-name">Toyota</span>
+                </div>
+                <div class="category-tab brand-tab" data-brand="BMW" onmouseenter="showBrandVehicles('BMW')">
+                    <img src="images/logos/BMW_logo.png" alt="BMW" class="brand-logo">
+                    <span class="brand-name">BMW</span>
+                </div>
+                <div class="category-tab brand-tab" data-brand="Mercedes-Benz"
+                    onmouseenter="showBrandVehicles('Mercedes-Benz')">
+                    <img src="images/logos/benz logo.png" alt="Mercedes-Benz" class="brand-logo">
+                    <span class="brand-name">Benz</span>
+                </div>
+                <div class="category-tab brand-tab" data-brand="Audi" onmouseenter="showBrandVehicles('Audi')">
+                    <img src="images/logos/audi logo.png" alt="Audi" class="brand-logo">
+                    <span class="brand-name">Audi</span>
+                </div>
+                <div class="category-tab brand-tab" data-brand="Ford" onmouseenter="showBrandVehicles('Ford')">
+                    <img src="images/logos/ford logo.png" alt="Ford" class="brand-logo">
+                    <span class="brand-name">Ford</span>
+                </div>
+                <div class="category-tab brand-tab" data-brand="Honda" onmouseenter="showBrandVehicles('Honda')">
+                    <img src="images/logos/Honda logo.png" alt="Honda" class="brand-logo">
+                    <span class="brand-name">Honda</span>
+                </div>
+                <div class="category-tab brand-tab" data-brand="Mazda" onmouseenter="showBrandVehicles('Mazda')">
+                    <img src="images/logos/mazda logo.png" alt="Mazda" class="brand-logo">
+                    <span class="brand-name">Mazda</span>
+                </div>
+                <div class="category-tab brand-tab" data-brand="Nissan" onmouseenter="showBrandVehicles('Nissan')">
+                    <img src="images/logos/NIssan logo.png" alt="Nissan" class="brand-logo">
+                    <span class="brand-name">Nissan</span>
+                </div>
+                <div class="category-tab brand-tab" data-brand="Volkswagen"
+                    onmouseenter="showBrandVehicles('Volkswagen')">
+                    <img src="images/logos/vw logo.png" alt="Volkswagen" class="brand-logo">
+                    <span class="brand-name">VW</span>
+                </div>
+                <div class="category-tab brand-tab" data-brand="Lexus" onmouseenter="showBrandVehicles('Lexus')">
+                    <img src="images/logos/lexus logo.png" alt="Lexus" class="brand-logo">
+                    <span class="brand-name">Lexus</span>
+                </div>
+                <div class="category-tab brand-tab" data-brand="Jaguar" onmouseenter="showBrandVehicles('Jaguar')">
+                    <img src="images/logos/jaguar logo.png" alt="Jaguar" class="brand-logo">
+                    <span class="brand-name">Jaguar</span>
+                </div>
+                <div class="category-tab brand-tab" data-brand="Suzuki" onmouseenter="showBrandVehicles('Suzuki')">
+                    <img src="images/logos/suzuki logo.png" alt="Suzuki" class="brand-logo">
+                    <span class="brand-name">Suzuki</span>
+                </div>
+                <div class="category-tab brand-tab" data-brand="Skoda" onmouseenter="showBrandVehicles('Skoda')">
+                    <img src="images/logos/Škoda_logo.png" alt="Skoda" class="brand-logo">
+                    <span class="brand-name">Skoda</span>
+                </div>
+            </div>
+            <div id="category-vehicles" class="category-vehicles">
+                <!-- Brand vehicles will be loaded here -->
+            </div>
+        </section>
+
+        <!-- 焦點車輛區域 -->
+        <section class="featured-section">
+            <h2 class="section-title">🔥 焦點車輛</h2>
+            <div class="featured-container">
+                <button class="featured-scroll-btn left" onclick="scrollFeatured('left')">‹</button>
+                <div id="featured-grid" class="featured-grid">
+                    <!-- Featured cars will be loaded here -->
+                </div>
+                <button class="featured-scroll-btn right" onclick="scrollFeatured('right')">›</button>
+            </div>
+        </section>
+
+        <!-- 所有車輛區域 -->
+        <section class="all-cars-section">
+            <h2 class="section-title">所有車輛</h2>
+            <section id="car-grid" class="car-grid">
+                <!-- Cars will be loaded here -->
+            </section>
+        </section>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            showBrandVehicles('all'); // Load recommended vehicles by brand
+            loadFeaturedCars();
+            loadCars();
+            checkAuth();
+        });
+    </script>
+</body>
+
+</html>

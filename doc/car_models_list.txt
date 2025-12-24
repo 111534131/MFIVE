@@ -1,0 +1,93 @@
+========================================
+          MFIVE 車型資料清單 (2025年式)
+========================================
+更新日期: 2025-12-17
+總車型數: 62
+數據來源: 官方規格表
+========================================
+
+【Audi】
+1. A3 Sportback 30 TFSI 享馭版 (139.0萬)
+2. A3 Sportback 35 TFSI Advanced 進化版 (155.0萬)
+3. A3 Sportback 35 TFSI S line 運動版 (179.0萬)
+4. RS3 Sportback (350.3萬)
+5. A5 Sportback 40 TFSI 享馭版 (250.0萬)
+6. A5 Sportback 40 TFSI S line 運動版 (263.0萬)
+7. A5 Sportback 45 TFSI quattro S line 運動版 (316.0萬)
+8. Q2 35 TFSI 享馭版 (149.0萬)
+9. Q2 35 TFSI Technik 豪華版 (155.0萬)
+
+【BMW】
+10. 3-Series Sedan 318i Sport (216.0萬)
+11. 3-Series Sedan 320i M Sport (246.0萬)
+12. 3-Series Sedan 330i M Sport (296.0萬)
+13. 3-Series Sedan M340i xDrive (366.0萬)
+14. 5-Series Sedan 520i M Sport (299.0萬)
+15. 5-Series Sedan 530i M Sport (343.0萬)
+
+【Ford】
+16. Kuga 1.5 Vignale (2025小改款) (93.9萬)
+17. Kuga 1.5 Active (2025小改款) (101.9萬)
+18. Kuga 2.0 AWD ST-Line (2025小改款) (113.9萬)
+
+【Honda】
+19. HR-V S+ (83.9萬)
+20. HR-V 1.5 e:HEV Prestige (87.9萬)
+
+【Lexus】
+21. ES 200 豪華版 (177.0萬)
+22. ES 200 頂級版 (195.0萬)
+23. ES 250 F SPORT (218.0萬)
+24. ES 300h 豪華版 (203.0萬)
+25. ES 300h 旗艦版 (249.0萬)
+
+【Mazda】
+26. Mazda3 Sedan 20S Carbon Edition (86.8萬)
+27. Mazda3 Sedan 20S Premium (94.8萬)
+28. CX-30 20S Carbon Edition (93.8萬)
+29. CX-30 20S Retro Sports Edition (109.8萬)
+
+【Mercedes-Benz】
+30. C-Class Sedan C180 (224.0萬)
+31. C-Class Sedan C200 (260.0萬)
+32. C-Class Sedan C300 (304.0萬)
+33. CLA 200 (209.0萬)
+34. AMG CLA 35 4MATIC (269.0萬)
+
+【Nissan】
+35. Altima 極致尊爵版 (139.9萬)
+36. Sentra 尊爵智駕版 (83.9萬)
+37. X-Trail 輕油電 經典版 (104.9萬)
+38. X-Trail 輕油電 旗艦版 (122.9萬)
+39. X-Trail e-POWER (151.9萬)
+
+【Skoda】
+40. Kodiaq 1.5 TSI e-TEC (二代) (153.8萬)
+41. Kodiaq 2.0 TSI 4x4 (二代) (173.8萬)
+42. Octavia Combi 1.5 TSI e-TEC (119.8萬)
+43. Octavia Combi RS (159.9萬)
+
+【Suzuki】
+44. Jimny 1.5 GLX (84.9萬)
+
+【Toyota】
+45. Corolla Altis 1.8 汽油 豪華 (79.5萬)
+46. Corolla Altis 1.8 Hybrid 尊爵 (88.5萬)
+47. Corolla Altis GR Sport 2.0 (91.5萬)
+48. Prius PHEV 2.0 旗艦版 (129.9萬)
+49. RAV4 2.0 豪華 (101.0萬)
+50. RAV4 2.0 旗艦 (117.0萬)
+51. RAV4 2.5 Hybrid 旗艦 4WD (138.0萬)
+52. bZ4X (136.0萬)
+
+【Volkswagen】
+53. Golf 280 eTSI Style (118.8萬)
+54. Golf 280 eTSI R-Line (128.8萬)
+55. Golf GTI (175.8萬)
+56. Golf R (213.8萬)
+57. T-ROC 280 TSI Style Design (122.8萬)
+58. T-ROC 330 TSI R-Line Performance (148.8萬)
+59. T-ROC R (188.8萬)
+60. Tiguan 280 eTSI Elegance (The New Tiguan) (139.8萬)
+61. Tiguan 280 eTSI Elegance Premium (The New Tiguan) (149.8萬)
+62. Tiguan 380 TSI R-Line Performance (The New Tiguan) (199.8萬)

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MFIVE 管理後台</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #dc0000;
+        }
+
+        .btn-add {
+            background: #dc0000;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .btn-add:hover {
+            background: #b00000;
+        }
+
+        .car-table {
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .car-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .car-table th {
+            background: #f5f5f5;
+            padding: 1rem;
+            text-align: left;
+            font-weight: bold;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .car-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .car-table img {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-edit,
+        .btn-delete {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .btn-edit {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background: #45a049;
+        }
+
+        .btn-delete {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #da190b;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 8px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #dc0000;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .image-preview {
+            margin-top: 1rem;
+            max-width: 100%;
+        }
+
+        .image-preview img {
+            max-width: 100%;
+            border-radius: 4px;
+        }
+
+        .btn-submit {
+            background: #dc0000;
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            background: #b00000;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">MFIVE 賞車網 - 管理後台</div>
+            <div id="nav-links">
+                <a href="index.html">回到首頁</a>
+                <a href="#" onclick="logout()">登出</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1>汽車管理</h1>
+            <button class="btn-add" onclick="openAddModal()">+ 新增汽車</button>
+        </div>
+
+        <div class="car-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>圖片</th>
+                        <th>品牌</th>
+                        <th>型號</th>
+                        <th>價格 (萬)</th>
+                        <th>車身型式</th>
+                        <th>燃料</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="car-list">
+                    <!-- 汽車列表將在這裡動態載入 -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 新增/編輯汽車 Modal -->
+    <div id="carModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">新增汽車</h2>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <form id="carForm" onsubmit="submitCar(event)">
+                <input type="hidden" id="car-id">
+
+                <div class="form-group">
+                    <label for="brand">品牌 *</label>
+                    <input type="text" id="brand" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="model">型號 *</label>
+                    <input type="text" id="model" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">價格 (萬) *</label>
+                    <input type="number" id="price" step="0.01" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="bodyType">車身型式</label>
+                    <select id="bodyType">
+                        <option value="Sedan">Sedan (轎車)</option>
+                        <option value="SUV">SUV (休旅車)</option>
+                        <option value="Hatchback">Hatchback (掀背車)</option>
+                        <option value="Coupe">Coupe (跑車)</option>
+                        <option value="Wagon">Wagon (旅行車)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="fuelType">燃料種類</label>
+                    <select id="fuelType">
+                        <option value="Petrol">Petrol (汽油)</option>
+                        <option value="Diesel">Diesel (柴油)</option>
+                        <option value="Hybrid">Hybrid (油電混合)</option>
+                        <option value="Electric">Electric (純電動)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="transmission">變速系統</label>
+                    <select id="transmission">
+                        <option value="Manual">Manual (手排)</option>
+                        <option value="Automatic">Automatic (自排)</option>
+                        <option value="CVT">CVT (無段變速)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="engineDisplacement">排氣量</label>
+                    <input type="text" id="engineDisplacement" placeholder="例如: 1998cc">
+                </div>
+
+                <div class="form-group">
+                    <label for="horsepower">最大馬力</label>
+                    <input type="number" id="horsepower" placeholder="例如: 156">
+                </div>
+
+                <div class="form-group">
+                    <label for="description">描述</label>
+                    <textarea id="description"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="imageFile">上傳圖片</label>
+                    <input type="file" id="imageFile" accept="image/*" onchange="previewImage(event)">
+                    <div id="image-preview" class="image-preview"></div>
+                </div>
+
+                <input type="hidden" id="imageUrl">
+
+                <button type="submit" class="btn-submit">儲存</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>

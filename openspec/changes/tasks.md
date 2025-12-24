@@ -1,0 +1,3 @@
+- [ ] Read and analyze existing documentation (REQ.md, SA.md, SD.md).
+- [ ] Draft the consolidated architecture document (`design.md`) with bilingual (English/Traditional Chinese) content.
+- [ ] Submit the new document for review.
