@@ -1,52 +1,219 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的最愛 - MFIVE</title>
+    <title>我的最愛 - MFIVE 賞車網</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* 我的最愛頁面專屬樣式 */
+        .favorites-hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .favorites-hero::before {
+            content: '❤';
+            position: absolute;
+            font-size: 150px;
+            opacity: 0.05;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .favorites-hero h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .favorites-hero p {
+            margin: 0;
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+
+        .favorites-count {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            padding: 0 1rem;
+        }
+
+        .favorite-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .favorite-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(204, 0, 0, 0.15);
+        }
+
+        .favorite-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .favorite-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .favorite-card-content {
+            padding: 1.5rem;
+        }
+
+        .favorite-card-content h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .favorite-card-content .brand {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .favorite-card-content .price {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0.5rem 0;
+        }
+
+        .favorite-card-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .favorite-card-actions .btn {
+            flex: 1;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .btn-remove {
+            background: #fff;
+            color: #dc3545;
+            border: 2px solid #dc3545;
+        }
+
+        .btn-remove:hover {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-view {
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn-view:hover {
+            background: #b30000;
+        }
+
+        .empty-favorites {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .empty-favorites-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .empty-favorites h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-favorites p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+    </style>
 </head>
+
 <body>
     <header>
-        <nav class="navbar">
-            <div class="container">
-                <a href="index.html" class="logo">MFIVE</a>
-                <ul class="nav-links">
-                    <li><a href="index.html">首頁</a></li>
-                    <li><a href="compare.html">車輛比較</a></li>
-                    <li id="favorites-link" style="display: none;"><a href="favorites.html">我的最愛</a></li>
-                    <li id="admin-link" style="display: none;"><a href="admin.html">管理後台</a></li>
-                </ul>
-                <div class="nav-auth">
-                    <!-- Auth content will be loaded by app.js -->
-                </div>
+        <div class="header-container">
+            <a href="index.html" class="logo">MFIVE 賞車網</a>
+            <nav>
+                <a href="index.html">首頁</a>
+                <a href="compare.html">車輛比較</a>
+                <a href="favorites.html" id="favorites-link" style="display: none;">我的最愛</a>
+                <a href="admin.html" id="admin-link" style="display: none;">管理後台</a>
+            </nav>
+            <div class="nav-auth">
+                <!-- Auth content will be loaded by app.js -->
             </div>
-        </nav>
+        </div>
     </header>
 
-    <main class="container">
-        <section class="page-title">
-            <h1>我的最愛</h1>
-            <p>您收藏的車輛將會顯示在這裡。</p>
-        </section>
+    <main>
+        <div class="favorites-hero">
+            <h1>❤ 我的最愛</h1>
+            <p>您收藏的夢想車款都在這裡</p>
+            <div class="favorites-count" id="favorites-count">載入中...</div>
+        </div>
 
-        <section class="car-list">
-            <div id="favorite-cars-container" class="car-grid">
-                <!-- Favorite cars will be loaded by favorites.js -->
-            </div>
-             <p id="no-favorites-message" style="display: none; text-align: center; font-size: 1.2rem; margin-top: 50px;">
-                您尚未收藏任何車輛。
-            </p>
-        </section>
+        <div class="favorites-grid" id="favorite-cars-container">
+            <!-- Favorite cars will be loaded by favorites.js -->
+        </div>
+
+        <div class="empty-favorites" id="no-favorites-message" style="display: none;">
+            <div class="empty-favorites-icon">💔</div>
+            <h3>您尚未收藏任何車輛</h3>
+            <p>瀏覽我們的車輛目錄，找到您心儀的愛車吧！</p>
+            <a href="index.html" class="btn">開始探索</a>
+        </div>
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 MFIVE. All Rights Reserved.</p>
-        </div>
+    <footer style="background: #1a1a2e; color: white; padding: 2rem; text-align: center; margin-top: 3rem;">
+        <p>&copy; 2024 MFIVE 賞車網. All Rights Reserved.</p>
     </footer>
 
     <script src="js/app.js"></script>
     <script src="js/favorites.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
+        });
+    </script>
 </body>
+
 </html>

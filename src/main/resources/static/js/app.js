@@ -619,10 +619,10 @@ async function setupFavoriteButton(carId) {
 
     function updateButton(isFav) {
         if (isFav) {
-            favBtn.textContent = '移除收藏';
+            favBtn.textContent = '從我的最愛移除';
             favBtn.classList.add('btn-secondary'); // Style as "already added"
         } else {
-            favBtn.textContent = '加入收藏';
+            favBtn.textContent = '加入我的最愛';
             favBtn.classList.remove('btn-secondary');
         }
     }
