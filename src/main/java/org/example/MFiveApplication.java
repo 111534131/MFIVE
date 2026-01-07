@@ -8,6 +8,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 @SpringBootApplication
 public class MFiveApplication extends SpringBootServletInitializer {
 
+
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(MFiveApplication.class);
